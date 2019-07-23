@@ -1,5 +1,4 @@
-// vim: set sw=4 et ts=4 ai ff=unix:
-//-------------------------------------------------------------------------------------------------|
+// vim: et ts=63 sw=4 tw=100 fileencoding=utf-8 ff=unix
 //
 //  Driver for TI ADS8598H 18-Bit 500kSPS 8-Channel Simultaneous-Sampling ADC
 //      https://www.ti.com/product/ADS8598H
@@ -182,7 +181,7 @@ module ADS8598H_driver
 
     // Clk counter used for st_reset, post-reset, and sample period.
     localparam time sampcyc_ctr_max = `max( reset_high_count_u64,   `max(
-                                            postreset_count_u64,     
+                                            postreset_count_u64,
                                             sample_cyc_count_u64    ));
 
     localparam int sampcyc_ctr_wid = $clog2(sampcyc_ctr_max + 1);
@@ -250,7 +249,7 @@ module ADS8598H_driver
     // Clk counter used for:
     //     t_P[HL]_CN      convst[ab] min pulse (high|low)
     //     t_P[HL]_(CS|RD) cs_n, rd_n min pulse (high|low)
-    localparam time phl_ctr_max = `max( `max( t_PHL_convst_count_u64,    
+    localparam time phl_ctr_max = `max( `max( t_PHL_convst_count_u64,
                                                   t_D_rddb_count_u64      ),
                                             `max( t_db_rd_hold_count_u64,
                                                   t_PL_rd_count_u64       ) );
@@ -296,7 +295,7 @@ module ADS8598H_driver
     localparam time t_conv_max_clks = `ceil_ti(theo_t_conv_max_ns/clk_period_ns);
     localparam real t_conv_max_ns = t_conv_max_clks*clk_period_ns;
 
-    // Total time to read out the data is 
+    // Total time to read out the data is
     //     rd_phase_clks*((two phases)*(two words)*(eight channels) - (last phase)).
     localparam time t_readout_clks = (t_PL_rd_clks + t_PH_rd_clks)*(2*8 - 1);
     localparam real t_readout_ns = t_readout_clks*clk_period_ns;
@@ -354,7 +353,7 @@ module ADS8598H_driver
         refsel  = ref_source;
         stby_n  = stdby_n_POWER_UP;
     end
-    
+
     //------------- Flopped state.
 
     // I'd rather use a typdef here and make it part of state_t, but Quartus 17.0
@@ -521,7 +520,7 @@ module ADS8598H_driver
 
             st_t_PH_convst: begin             //-------------------------------------- st_t_PH_convst
 
-                    // We have 'busy', continue asserting convst until t_PH_convst has elapsed              
+                    // We have 'busy', continue asserting convst until t_PH_convst has elapsed
 
                     convst = 1'b1;
 
@@ -545,7 +544,7 @@ module ADS8598H_driver
 
             st_t_D_rddb: begin      //--------------------------------------------------- st_t_D_rddb
 
-                    // assert rd to request the next output              
+                    // assert rd to request the next output
 
                     rd = 1'b1;
 
@@ -681,7 +680,7 @@ module ADS8598H_driver
         cs_n      = ~rd;
         rd_n_sclk = ~rd;
     end
- 
+
 endmodule // driver
 
 //-------------------------------------------------------------------------------------------------|

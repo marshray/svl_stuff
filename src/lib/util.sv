@@ -1,5 +1,9 @@
 // vim: et ts=63 sw=4 tw=100 fileencoding=utf-8 ff=unix
 //
+//  Misc utility and compatibility functions.
+//
+//-------------------------------------------------------------------------------------------------|
+//
 // Copyright 2019 Marsh Ray
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +17,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
+//-------------------------------------------------------------------------------------------------|
 
 `default_nettype none
 
